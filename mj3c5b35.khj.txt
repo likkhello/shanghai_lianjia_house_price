@@ -1,0 +1,47 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   .gitignore
+#	new file:   Community_geo_cluster.R
+#	new file:   Community_prediction.R
+#	new file:   README.Rmd
+#	new file:   README.html
+#	new file:   d3.min.js
+#	new file:   dat.gui.min.js
+#	new file:   data/lianjia_shanghai_communities.json
+#	new file:   data/lianjia_shanghai_communities.xls
+#	new file:   data/lianjia_shanghai_traded.xls
+#	new file:   header.tex
+#	new file:   leaflet/images/layers-2x.png
+#	new file:   leaflet/images/layers.png
+#	new file:   leaflet/images/marker-icon-2x.png
+#	new file:   leaflet/images/marker-icon.png
+#	new file:   leaflet/images/marker-shadow.png
+#	new file:   leaflet/leaflet-src.js
+#	new file:   leaflet/leaflet.css
+#	new file:   leaflet/leaflet.js
+#	new file:   lianjia_community.js
+#	new file:   lianjia_community.parser.js
+#	new file:   lianjia_community.pool.js
+#	new file:   lianjia_community.urls.js
+#	new file:   lianjia_community_SubUrls.txt
+#	new file:   lianjia_traded.js
+#	new file:   lianjia_traded.parser.js
+#	new file:   lianjia_traded.pool.js
+#	new file:   lianjia_traded.urls.js
+#	new file:   lianjia_traded_SubUrls.txt
+#	new file:   models/chengjiao.js
+#	new file:   models/community.js
+#	new file:   models/hospital.js
+#	new file:   mongo.js
+#	new file:   package.json
+#	new file:   shanghai_community_price_choropleth map.html
+#	new file:   shanghai_community_price_interactive_leaflet.html
+#	new file:   shanghai_lianjia_house_price
+#
+

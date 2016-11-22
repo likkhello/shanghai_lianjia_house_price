@@ -1,0 +1,13 @@
+{
+  "name": "shanghai_lianjia_house_price",
+  "version": "1.0.0",
+  "description": "shanghai_lianjia_spider",
+  "main": "d3.min.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "likk",
+  "license": "ISC"
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title id="title">geo</title>
+  <link rel="stylesheet" type="text/css" href="./leaflet/leaflet.css">
+  <style>
+  body, html, div, svg{
+    padding: 0;
+    margin: 0;
+  }
+  body{
+    background: #222;
+  }
+  .container{
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    position: absolute;
+  }
+  .key{
+    display: inline-block;
+    color: #ccc;
+    font-size: 20px;
+  }
+  .value{
+    display: inline-block;
+    color: #06e6ae;
+    font-size: 60px;
+    font-weight: bold;
+  }
+  .dot{
+    z-index: 2;
+  }
+  .map{
+    z-index: 1;
+  }
+  </style>
+</head>
+<body>
+  <div class="container" id="map-container"></div>
+  <script src="./leaflet/leaflet.js"></script>
+  <script src="./dat.gui.min.js"></script>
+  <script type="text/javascript">
+
+
+  var map = L.map('map-container', {"center":[31.132901401103307,121.40098571777344],"zoom":10});
+  var tileLayer = L.tileLayer('//map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}').addTo(map);
+
+  var filterRange = [10000, 100000]
+  function rangeFilter(d){
+    return d.avr_price > filterRange[0] && d.avr_price < filterRange[1]
+  }
+
+  var priceRange = [10000, 150000];
+  var circles = [];
+  //获取数据
+  fetch('./data/lianjia_shanghai_communities.json')
+  .then(function(response) {
+    return response.json();
+  })      
+  .then(function(ds){
+    ds
+    .filter(function(d){
+      return d.lat && d.lng
+    })
+    .forEach(function(d){
+      var price = d.avr_price;
+      var priceMin = priceRange[0], priceMax = priceRange[1];
+      var price01 = getK(price, priceMin, priceMax);
+      var size = getSize(price01);
+      var color = getColor(price01);
+      if(!rangeFilter(d)) color = 'rgba(0,0,0,0)';
+
+      //
+      var circle = L.circleMarker({
+        lat: d.lat,
+        lng: d.lng
+      }, {
+        stroke: false,
+        fillColor: color
+      })
+      .addTo(map);
+      circle.setRadius(size);
+      circle.__data = d;
+      circle.bindPopup('小区名:' + d.community_name + '<br> 每平米价格： ' + d.avr_price);
+      //
+      circles.push(circle);
+
+    });
+  });
+  
+  //归一化
+  function getK(v, min, max){
+    v = Math.max(Math.min(v, max), min);
+    return (v - min) / (max - min);
+  }
+
+  //颜色字符串 -> 数组
+  function str2array(c){
+    return c
+    .replace('rgba(', '')
+    .replace(')', '')
+    .split(',')
+    .map(function(v){
+      return parseFloat(v, 10);
+    });
+  }
+
+  //颜色映射函数
+function getColor(d) {
+    return d > 0.8 ? '#800026' :
+           d > 0.7  ? '#BD0026' :
+           d > 0.6  ? '#E31A1C' :
+           d > 0.5  ? '#FC4E2A' :
+           d > 0.4  ? '#FD8D3C' :
+           d > 0.3  ? '#FEB24C' :
+           d > 0.2  ? '#FED976' :
+                      '#FFEDA0';
+}
+
+  // 大小映射函数
+  var rrange = [2, 10]
+  function getSize(ki){
+    var rmin = rrange[0], rmax = rrange[1];
+    return rmin + (rmax - rmin) * ki;
+  }
+
+ /*var legend = L.control({position: 'bottomright'});
+
+ legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+legend.addTo(map);*/
+  </script>
+</body>
+</html>
