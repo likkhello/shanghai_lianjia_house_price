@@ -151,6 +151,7 @@ plot(K,rst,type='l',main='Silhouette Coefficient vs K', ylab='Silhouette Coeffic
 <img src="http://ogx7uv5qv.bkt.clouddn.com/Rplot_kmeans.png" >
 
 选取K标准是：对于一个给定的类簇指标，当我们假设的类簇数目等于或高于真实的类簇数据时，该指标上升会很慢，而一旦试图得到少于真实数目的类簇时，该指标会急剧上升。一般我们会选取该拐点的K值。最后根据选取的K值绘制散点图观察数据聚类特征。这里我们选取3作为K值。
+
 <img src="http://ogx7uv5qv.bkt.clouddn.com/Rplot_kmeans_3.png" >
 
 由于kmeans聚类算法在数据量比较大时很占用内存，因此这里只选取一部分数据做地理聚类，后面会尝试使用亚马逊云平台AWS做全部数据的地理聚类。
