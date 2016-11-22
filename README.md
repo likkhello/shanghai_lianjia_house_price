@@ -151,9 +151,10 @@ plot(K,rst,type='l',main='Silhouette Coefficient vs K', ylab='Silhouette Coeffic
 <img src="http://ogx7uv5qv.bkt.clouddn.com/Rplot_kmeans.png" >
 
 选取K标准是：对于一个给定的类簇指标，当我们假设的类簇数目等于或高于真实的类簇数据时，该指标上升会很慢，而一旦试图得到少于真实数目的类簇时，该指标会急剧上升。一般我们会选取该拐点的K值。最后根据选取的K值绘制散点图观察数据聚类特征。这里我们选取3作为K值。
+
 <img src="http://ogx7uv5qv.bkt.clouddn.com/Rplot_kmeans_3.png" >
 
-由于kmeans聚类算法在数据量比较大时很占用内存，因此这里只选取一部分数据做地理聚类，后面会尝试使用亚马逊云平台AWS做全部数据的地理聚类。
+由于kmeans聚类算法在数据量比较大时很占用内存，因此这里只分次选取一部分数据做地理聚类，后面会尝试使用亚马逊云平台AWS做全部数据的地理聚类。
 
 ### 2.2 基于多元线性回归的小区均价预测
 在实际问题中影响变量的因素往往不止一个，对于房价来说也是如此，地理位置，房龄，建筑数量等因素都会影响到房价的高低。多元线性回归是分析这种多维度的复杂变量关系的有力工具。在做多元线性回归前，也需要对数据进行筛选，清洗和其他必要的预处理。
@@ -309,7 +310,7 @@ fetch('./data/lianjia_shanghai_communities.json')
       circle.bindPopup('小区名:' + d.community_name + '<br> 每平米价格： ' + d.avr_price);
 ```
 最后将地理数据，颜色和大小信息映射到地图上，并且加上了点击弹出小区价格的互动设计。完整代码请参考shanghai_community_price_choropleth map.html。效果图如下：
-<img src="http://ogx7uv5qv.bkt.clouddn.com/map1.png" >
+<img src="http://ogx7uv5qv.bkt.clouddn.com/map1.png" width="1700px" height="900px" />
 
 ### 3.2 交互数据可视化
 上述地图完成了基本的分级数据可视化，但是灵活性和交互性不足，下面我将尝试让颜色和大小都可控，并且加上过滤函数，这样使用者可以过滤出自己关心的价格区间。
