@@ -310,7 +310,9 @@ fetch('./data/lianjia_shanghai_communities.json')
       circle.bindPopup('小区名:' + d.community_name + '<br> 每平米价格： ' + d.avr_price);
 ```
 最后将地理数据，颜色和大小信息映射到地图上，并且加上了点击弹出小区价格的互动设计。完整代码请参考shanghai_community_price_choropleth map.html。效果图如下：
-<img src="http://ogx7uv5qv.bkt.clouddn.com/map1.png" width="1700px" height="900px" />
+
+<img src="http://ogx7uv5qv.bkt.clouddn.com/map1.png" >
+
 
 ### 3.2 交互数据可视化
 上述地图完成了基本的分级数据可视化，但是灵活性和交互性不足，下面我将尝试让颜色和大小都可控，并且加上过滤函数，这样使用者可以过滤出自己关心的价格区间。
