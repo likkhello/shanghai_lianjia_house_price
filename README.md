@@ -1,2 +1,2 @@
 # shanghai_lianjia
-shanghai lianjia community price analysis
+Please refer to README.Rmd for details.
